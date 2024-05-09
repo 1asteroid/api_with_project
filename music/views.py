@@ -18,6 +18,7 @@ class ArtistAPIViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication, )
     filter_backends = (filters.SearchFilter, )
     search_fields = ['name']
+    pagination_class = LimitOffsetPagination
     # permission_classes = (IsAdminUser, )
 
 
@@ -27,6 +28,7 @@ class AlbomAPIViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ["title", "artist__name"]
+    pagination_class = LimitOffsetPagination
     # permission_classes = (IsAdminUser, )
 
 
@@ -46,6 +48,7 @@ class ProductAPIViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ["name", "count", "category"]
+    pagination_class = LimitOffsetPagination
     # permission_classes = (IsAdminUser, )
 
 
@@ -55,6 +58,7 @@ class BasketAPIViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ["user__first_name", "user__last_name"]
+    pagination_class = LimitOffsetPagination
     # permission_classes = (IsAdminUser, )
 
 
@@ -64,4 +68,5 @@ class BasketItemsAPIViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ["basket__user__first_name", "product_name"]
+    pagination_class = LimitOffsetPagination
     # permission_classes = (IsAdminUser, )
