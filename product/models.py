@@ -5,6 +5,12 @@ from .helpes import SaveImages, ProductChoiseArgument
 class Category(models.Model):
     name = models.CharField(max_length=30, default="fruit")
 
+    class Meta:
+        ordering = ["id"]
+        indexes = [
+            models.Index(fields=['id'])
+        ]
+
 
 class Product(models.Model):
     name = models.CharField(max_length=30)
@@ -23,6 +29,12 @@ class Product(models.Model):
     quality = models.CharField(max_length=10, choices=ProductChoiseArgument.QualityType.choices,
                                default=ProductChoiseArgument.QualityType.organic)
     create_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["id"]
+        indexes = [
+            models.Index(fields=['id'])
+        ]
 
     def __str__(self):
         return self.name

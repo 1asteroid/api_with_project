@@ -25,7 +25,7 @@ class SongSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Songs
-        fields = ("title", "cover", "albom")
+        fields = ("id", "title", "cover", "albom", "listened")
 
 
 # Product
