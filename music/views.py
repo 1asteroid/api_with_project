@@ -24,7 +24,7 @@ class ArtistAPIViewSet(ModelViewSet):
     filter_backends = (filters.SearchFilter, )
     search_fields = ['name']
     pagination_class = LimitOffsetPagination
-    # permission_classes = (IsAdminUser, )
+    # permission_classes = (IsAuthenticated, )
 
 
 class AlbomAPIViewSet(ModelViewSet):
@@ -34,17 +34,17 @@ class AlbomAPIViewSet(ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ["title", "artist__name"]
     pagination_class = LimitOffsetPagination
-    # permission_classes = (IsAdminUser, )
+    # permission_classes = (IsAuthenticated, )
 
 
 class SongAPIViewSet(ModelViewSet):
     queryset = Songs.objects.all()
     serializer_class = SongSerializer
-    # authentication_classes = (TokenAuthentication,)
+    authentication_classes = (TokenAuthentication,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ["$title", "$albom__title", "$albom__artist__name"]
     pagination_class = LimitOffsetPagination
-    # permission_classes = (IsAdminUser, )
+    # permission_classes = (IsAuthenticated, )
 
     @action(detail=True, methods=["GET"])
     def listen(self, request, *args, **kwargs):
@@ -69,7 +69,7 @@ class ProductAPIViewSet(ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ["name", "count", "category"]
     pagination_class = LimitOffsetPagination
-    # permission_classes = (IsAdminUser, )
+    # permission_classes = (IsAuthenticated, )
 
 
 class BasketAPIViewSet(ModelViewSet):
@@ -79,7 +79,7 @@ class BasketAPIViewSet(ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ["user__first_name", "user__last_name"]
     pagination_class = LimitOffsetPagination
-    # permission_classes = (IsAdminUser, )
+    # permission_classes = (IsAuthenticated, )
 
 
 class BasketItemsAPIViewSet(ModelViewSet):
@@ -89,4 +89,4 @@ class BasketItemsAPIViewSet(ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ["basket__user__first_name", "product_name"]
     pagination_class = LimitOffsetPagination
-    # permission_classes = (IsAdminUser, )
+    # permission_classes = (IsAuthenticated, )
